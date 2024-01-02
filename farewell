@@ -1,0 +1,57 @@
+ farewell.py
+
+import streamlit as st
+from Chatbot import Chatbot
+from PIL import Image
+
+
+def main():
+    st.title("InfoBuddy Chatbot")
+
+    chatbot = Chatbot()
+    # Set a colorful background
+
+    st.markdown("<div style='text-align: center;'><h2 style='color: #ffcc00;'>🌟 Welcome to InfoBuddy! 🌟</h2></div>", unsafe_allow_html=True)
+    # Display party-themed emojis
+    st.write("🎊 Let's celebrate the farewell party together! 🎊")
+# Call greet_user without any arguments
+    st.write(chatbot.greet_user())
+
+# User interaction
+    user_input = st.text_input("You: ")
+
+    if st.button("Ask"):
+        if user_input:
+            # Handle user input
+            if "purpose of this chatbot" in user_input.lower():
+                bot_response = chatbot.respond_to_purpose_of_this_chatbot()
+            elif "student details" in user_input.lower():
+                bot_response = chatbot.respond_to_student_details()
+            elif "contact information" in user_input.lower():
+                bot_response = chatbot.respond_to_contact_information()
+            elif "farewell dates" in user_input.lower():
+                bot_response = chatbot.respond_to_farewell_dates()
+            elif "farewell timings" in user_input.lower():
+                bot_response = chatbot.respond_to_farewell_timings()
+            elif "farewell venue" in user_input.lower():
+                bot_response = chatbot.respond_to_farewell_venue()
+            elif "guests" in user_input.lower():
+                bot_response = chatbot.respond_to_guests_information()
+            elif "food types" in user_input.lower():
+                bot_response = chatbot.respond_to_food_types()
+            elif "programs" in user_input.lower():
+                bot_response = chatbot.respond_to_programs()
+            else:
+                bot_response = chatbot.handle_question(user_input)
+
+            # Display bot response
+            st.write("Bot:", bot_response)
+        else:
+            st.warning("Please enter a question.")
+
+    # Farewell message
+    if st.button("Exit"):
+        st.write(chatbot.farewell_message())
+
+if __name__ == "__main__":
+    main()
